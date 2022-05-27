@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using DualMountain.WorldBusiness.Facades;
 
 namespace DualMountain.WorldBusiness.Controller {
@@ -14,6 +15,24 @@ namespace DualMountain.WorldBusiness.Controller {
             var input = AllWorldRepo.InputEntity;
             input.OnMoveHandle += OnMove;
             input.OnJumpHandle += OnJump;
+
+        }
+
+        public void Tick(float deltaTime) {
+
+            var player = AllWorldRepo.PlayerEntity;
+            if (player == null) {
+                return;
+            }
+
+            // TODO: 这是临时的
+            var mouse = Mouse.current;
+            float mouseHorizontal = mouse.delta.x.ReadValue();
+            float mouseVertical = mouse.delta.y.ReadValue();
+            Vector2 mouseScroll = mouse.scroll.ReadValue();
+            player.camRotateHorizontal = mouseHorizontal * deltaTime;
+            player.camRotateVertical = mouseVertical * deltaTime;
+            player.pullDistance = -mouseScroll.y * deltaTime;
 
         }
 

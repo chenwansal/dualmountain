@@ -49,6 +49,14 @@ namespace DualMountain {
                 return;
             }
 
+            float dt = Time.deltaTime;
+
+            // 输入控制
+            inputController.Tick(dt);
+
+            // 角色控制
+            roleController.Tick(dt);
+
         }
 
         void FixedUpdate() {

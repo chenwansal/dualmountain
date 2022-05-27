@@ -26,6 +26,20 @@ namespace DualMountain.WorldBusiness.Controller {
 
         }
 
+        public void Tick(float deltaTime) {
+
+            var cam = AllWorldRepo.CameraEntity;
+            var player = AllWorldRepo.PlayerEntity;
+            if (cam == null || player == null) {
+                return;
+            } 
+
+            cam.RotateHorizontal(player.camRotateHorizontal);
+            cam.RotateVertical(player.camRotateVertical);
+            cam.PullDistance(player.pullDistance);
+
+        }
+
         public void FixedTick(float fixedDeltaTime) {
 
             var role = AllWorldRepo.RoleEntity;

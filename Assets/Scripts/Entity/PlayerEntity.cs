@@ -9,8 +9,9 @@ namespace DualMountain.WorldBusiness {
         public Vector2 moveAxis;
         public float jumpAxis;
 
-        public float yCamRotate;
-        public float xCamRotate;
+        public float camRotateHorizontal;
+        public float camRotateVertical;
+        public float pullDistance;
 
     }
 
