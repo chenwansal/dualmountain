@@ -29,13 +29,25 @@ namespace DualMountain.WorldBusiness.Controller {
                 return;
             }
 
-            // 移动它
             var player = AllWorldRepo.PlayerEntity;
 
+            // 移动它
             Camera camera = AllWorldRepo.Camera;
             Vector2 moveAxis = player.moveAxis;
-
             role.Move(camera.transform, moveAxis);
+
+            // 跳
+            float jumpAxis = player.jumpAxis;
+            if (jumpAxis > 0) {
+                role.Jump(jumpAxis);
+                player.jumpAxis = 0;
+            }
+
+            // 下落
+            role.Falling(fixedDeltaTime);
+
+            // 落地检测
+            role.CheckGround(fixedDeltaTime);
 
         }
 
