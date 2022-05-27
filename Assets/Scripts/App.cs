@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
+using DualMountain.WorldBusiness;
 using DualMountain.WorldBusiness.Controller;
 using DualMountain.WorldBusiness.Facades;
 
@@ -18,8 +20,9 @@ namespace DualMountain {
             isInit = false;
 
             // ==== 游戏准备 ====
-            // 找到相机
+            // 找到相机 && 虚拟相机
             AllWorldRepo.SetCamera(Camera.main);
+            AllWorldRepo.SetCameraEntity(transform.GetComponentInChildren<CameraEntity>());
 
             // 生成 PlayerEntity
             AllWorldRepo.Ctor();

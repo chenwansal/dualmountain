@@ -20,6 +20,10 @@ namespace DualMountain.WorldBusiness.Controller {
                 Debug.Log("找到角色");
             }
 
+            // 让相机看向角色
+            var cm = AllWorldRepo.CameraEntity;
+            cm.Follow(role.transform);
+
         }
 
         public void FixedTick(float fixedDeltaTime) {

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Cinemachine;
 
 namespace DualMountain.WorldBusiness.Facades {
 
@@ -9,6 +10,10 @@ namespace DualMountain.WorldBusiness.Facades {
         static Camera camera;
         public static Camera Camera => camera;
         public static void SetCamera(Camera cam) => camera = cam;
+
+        static CameraEntity cameraEntity;
+        public static CameraEntity CameraEntity => cameraEntity;
+        public static void SetCameraEntity(CameraEntity cam) => cameraEntity = cam;
 
         // 玩家类
         public static PlayerEntity PlayerEntity { get; private set; }
