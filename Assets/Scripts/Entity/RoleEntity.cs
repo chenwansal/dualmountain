@@ -70,7 +70,6 @@ namespace DualMountain.WorldBusiness {
                 if (hit.collider.gameObject.CompareTag("Ground")) {
                     if (rb.velocity.y <= 0) {
                         isJump = false;
-                        Debug.Log("落地");
                     }
                     break;
                 }

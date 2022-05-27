@@ -205,6 +205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sensitivity: 20
+  isRevertY: 1
 --- !u!1 &310579681
 GameObject:
   m_ObjectHideFlags: 0
