@@ -12,6 +12,7 @@ namespace DualMountain.WorldBusiness.Controllers {
         public void Init() {
             var input =  AllGlobalRepo.InputEntity;
             input.OnMoveHandle += OnMove;
+            input.OnJumpHandle += OnJump;
         }
 
         public void Tick() {
@@ -22,8 +23,11 @@ namespace DualMountain.WorldBusiness.Controllers {
         void OnMove(Vector2 moveAxis) {
             var player = AllGlobalRepo.PlayerEntity;
             player.moveAxis = moveAxis;
+        }
 
-            Debug.Log("Move: " + moveAxis);
+        void OnJump(float jumpAxis) {
+            var player = AllGlobalRepo.PlayerEntity;
+            player.jumpAxis = jumpAxis;
         }
 
     }

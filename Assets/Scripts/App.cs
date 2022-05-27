@@ -48,7 +48,8 @@ namespace DualMountain.MainEntry {
                 return;
             }
 
-            worldEntry.FixedTick();
+            float dt = Time.fixedDeltaTime;
+            worldEntry.FixedTick(dt);
         }
 
         void LateUpdate() {
