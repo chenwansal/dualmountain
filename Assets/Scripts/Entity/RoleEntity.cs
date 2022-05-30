@@ -68,11 +68,8 @@ namespace DualMountain.WorldBusiness {
             int count = Physics.BoxCastNonAlloc(footCollider.transform.position, footCollider.size, Vector3.down, tempHits, footCollider.transform.rotation, fallingSpeed, groundLayer);
             for (int i = 0; i < count; i += 1) {
                 var hit = tempHits[i];
-                if (hit.collider.gameObject.CompareTag("Ground")) {
-                    if (rb.velocity.y <= 0) {
-                        isJump = false;
-                    }
-                    break;
+                if (rb.velocity.y <= 0) {
+                    isJump = false;
                 }
                 Debug.Log("Hit: " + hit.collider.gameObject.name);
             }
