@@ -18,6 +18,7 @@ namespace DualMountain.WorldBusiness {
 
         // Renderer
         Transform mesh;
+        public Transform Mesh => mesh;
 
         void Awake() {
 

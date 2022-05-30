@@ -8,32 +8,16 @@ namespace DualMountain.WorldBusiness.Controller {
 
         public RoleController() {}
 
-        public void Init(Transform root) {
-
-            RoleEntity role = root.GetComponentInChildren<RoleEntity>();
-            Debug.Assert(role != null);
-
-            if (AllWorldRepo.RoleEntity != null) {
-                Debug.LogError("WHY? 不应该有角色存在");
-            } else {
-                AllWorldRepo.SetRoleEntity(role);
-                Debug.Log("找到角色");
-            }
-
-            // 让相机看向角色
-            var cm = AllWorldRepo.CameraEntity;
-            cm.Follow(role.transform);
-
-        }
-
         public void Tick(float deltaTime) {
 
-            var cam = AllWorldRepo.CameraEntity;
+            var world = AllWorldRepo.WorldEntity;
             var player = AllWorldRepo.PlayerEntity;
-            if (cam == null || player == null) {
+            if (world == null || player == null) {
                 return;
             } 
 
+            // 鼠标控制相机
+            var cam = world.CameraEntity;
             cam.RotateHorizontal(player.camRotateHorizontal);
             cam.RotateVertical(player.camRotateVertical);
             cam.PullDistance(player.pullDistance);

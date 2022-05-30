@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +14,7 @@ namespace DualMountain {
 
         bool isInit;
 
+        WorldSpawnController worldSpawnController;
         InputController inputController;
         RoleController roleController;
 
@@ -19,24 +22,49 @@ namespace DualMountain {
 
             isInit = false;
 
-            // ==== 游戏准备 ====
-            // 找到相机 && 虚拟相机
-            AllWorldRepo.SetCamera(Camera.main);
-            AllWorldRepo.SetCameraEntity(transform.GetComponentInChildren<CameraEntity>());
+            DontDestroyOnLoad(gameObject);
+            QualitySettings.vSyncCount = 0;
+            Application.targetFrameRate = 60;
 
-            // 生成 PlayerEntity
-            AllWorldRepo.Ctor();
+            Action action = async () => {
 
-            // 生成 控制器
-            inputController = new InputController();
-            inputController.Init();
+                try {
 
-            // 生成 玩家
-            roleController = new RoleController();
-            roleController.Init(transform);
+                    // ==== CTOR ====
+                    // 找到相机 && 虚拟相机
+                    AllWorldRepo.SetCamera(Camera.main);
 
-            isInit = true;
-            
+                    // 生成 PlayerEntity
+                    AllWorldRepo.Ctor();
+
+                    worldSpawnController = new WorldSpawnController();
+                    inputController = new InputController();
+                    roleController = new RoleController();
+
+                    AllWorldAssets.Ctor();
+
+                    // ==== INIT ====
+                    await AllWorldAssets.WorldAssets.LoadAll();
+
+                    // 生成 控制器
+                    inputController.Init();
+
+                    // ==== GAME START ====
+                    // TODO: 临时触发生成世界
+                    AllWorldEventCenter.SetTriggerSpawnWorld(true);
+
+                    isInit = true;
+
+                } catch (Exception ex) {
+
+                    Debug.LogException(ex);
+
+                }
+
+            };
+
+            action.Invoke();
+
         }
 
         void Start() {
@@ -50,6 +78,9 @@ namespace DualMountain {
             }
 
             float dt = Time.deltaTime;
+
+            // 世界生成
+            worldSpawnController.Tick();
 
             // 输入控制
             inputController.Tick(dt);
