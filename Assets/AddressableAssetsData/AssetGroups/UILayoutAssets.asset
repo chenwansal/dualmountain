@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Default Local Group
+  m_Name: UILayoutAssets
   m_EditorClassIdentifier: 
-  m_GroupName: Default Local Group
+  m_GroupName: UILayoutAssets
   m_Data:
     m_SerializedData: []
-  m_GUID: 8f34d170e7ac7654aa588da8587d8ee9
+  m_GUID: 95cb5b9673b9e6c41b10bcf48924b073
   m_SerializeEntries:
-  - m_GUID: 9cb54db7ced6c7c40a446867f181982c
-    m_Address: go_role
+  - m_GUID: 432ccaf29d9b15b45ab1fc0f4e8c5889
+    m_Address: ui_page_title
     m_ReadOnly: 0
     m_SerializedLabels:
-    - WorldAssets
+    - UILayoutAssets
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 6af98c718c8e47b498d1ad5be3dd2a15, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 8be2277d07b176d4485b38c1ada384e6, type: 2}
-    - {fileID: 11400000, guid: 42026fdcc3f7402499a54ce39e48d2be, type: 2}
+    - {fileID: 11400000, guid: 6e2610a664984294488f8d30bf7e266c, type: 2}
+    - {fileID: 11400000, guid: aabf2137a2bb7174c96f9d8a61e7b6b6, type: 2}

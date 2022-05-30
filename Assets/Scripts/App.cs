@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using DualMountain.Facades;
+using DualMountain.UIRenderer.Entry;
+using DualMountain.TitleBusiness.Controller;
 using DualMountain.WorldBusiness;
 using DualMountain.WorldBusiness.Controller;
 using DualMountain.WorldBusiness.Facades;
@@ -15,6 +17,13 @@ namespace DualMountain {
 
         bool isInit;
 
+        // UI ENTRY
+        UIEntry uiEntry;
+
+        // TODL: TITLE ENTRY
+        TitlePageController titlePageController;
+
+        // TODO: WORLD ENTRY
         WorldSpawnController worldSpawnController;
         InputController inputController;
         RoleController roleController;
@@ -32,27 +41,38 @@ namespace DualMountain {
                 try {
 
                     // ==== CTOR ====
-                    AllGlobalRepo.Ctor();
-                    AllWorldRepo.Ctor();
+                    uiEntry = new UIEntry();
+
+                    titlePageController = new TitlePageController();
 
                     worldSpawnController = new WorldSpawnController();
                     inputController = new InputController();
                     roleController = new RoleController();
 
+                    // ==== FAKE CTOR ====
+                    AllGlobalRepo.Ctor();
+                    AllWorldRepo.Ctor();
+
                     AllWorldAssets.Ctor();
+
+                    uiEntry.Ctor(transform);
 
                     // ==== INJECT ====
                     AllGlobalRepo.Inject(Camera.main);
 
                     // ==== INIT ====
+                    await uiEntry.Init();
                     await AllWorldAssets.WorldAssets.LoadAll();
 
                     // 生成 控制器
                     inputController.Init();
 
                     // ==== GAME START ====
+                    // TODO: 打开UI
+                    AllGlobalEventCenter.SetOpenTitlePage(true);
+
                     // TODO: 临时触发生成世界
-                    AllWorldEventCenter.SetTriggerSpawnWorld(true);
+                    // AllWorldEventCenter.SetTriggerSpawnWorld(true);
 
                     isInit = true;
 
@@ -79,6 +99,9 @@ namespace DualMountain {
             }
 
             float dt = Time.deltaTime;
+
+            // 标题页
+            titlePageController.Tick();
 
             // 世界生成
             worldSpawnController.Tick();

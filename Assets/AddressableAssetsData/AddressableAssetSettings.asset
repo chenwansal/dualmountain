@@ -43,6 +43,9 @@ MonoBehaviour:
   m_GroupAssets:
   - {fileID: 11400000, guid: 23a978685d9ed624ab07f443b1634727, type: 2}
   - {fileID: 11400000, guid: 8cf145507c901114d829f8e1bf83fded, type: 2}
+  - {fileID: 11400000, guid: 64c16d4687325ff4b87de13814674c2d, type: 2}
+  - {fileID: 11400000, guid: 36c1c00538a7c414381cc7ef1081590d, type: 2}
+  - {fileID: 11400000, guid: b1d745cea8c0f534399c024d2eb40b5d, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -85,6 +88,7 @@ MonoBehaviour:
     m_LabelNames:
     - default
     - WorldAssets
+    - UILayoutAssets
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: aecc92736cffae742919ba63388303cd, type: 2}

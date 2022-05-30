@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using DualMountain.Facades;
 using DualMountain.WorldBusiness.Facades;
 
 namespace DualMountain.WorldBusiness.Controller {
@@ -11,11 +12,11 @@ namespace DualMountain.WorldBusiness.Controller {
 
         public void Tick() {
 
-            if (!AllWorldEventCenter.IsTriggerSpawnWorld) {
+            if (!AllGlobalEventCenter.IsTriggerSpawnWorld) {
                 return;
             }
 
-            AllWorldEventCenter.SetTriggerSpawnWorld(false);
+            AllGlobalEventCenter.SetTriggerSpawnWorld(false);
 
             Action action = async () => {
 
