@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace DualMountain.WorldBusiness {
+namespace DualMountain {
 
     public class PlayerEntity {
 

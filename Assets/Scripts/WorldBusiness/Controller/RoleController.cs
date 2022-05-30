@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using DualMountain.Facades;
 using DualMountain.WorldBusiness.Facades;
 
 namespace DualMountain.WorldBusiness.Controller {
@@ -11,12 +12,12 @@ namespace DualMountain.WorldBusiness.Controller {
         public void Tick(float deltaTime) {
 
             var world = AllWorldRepo.WorldEntity;
-            var player = AllWorldRepo.PlayerEntity;
-            if (world == null || player == null) {
+            if (world == null) {
                 return;
             } 
 
             // 鼠标控制相机
+            var player = AllGlobalRepo.PlayerEntity;
             var cam = world.CameraEntity;
             cam.RotateHorizontal(player.camRotateHorizontal);
             cam.RotateVertical(player.camRotateVertical);
@@ -31,10 +32,10 @@ namespace DualMountain.WorldBusiness.Controller {
                 return;
             }
 
-            var player = AllWorldRepo.PlayerEntity;
+            var player = AllGlobalRepo.PlayerEntity;
 
             // 移动它
-            Camera camera = AllWorldRepo.Camera;
+            Camera camera = AllGlobalRepo.MainCamera;
             Vector2 moveAxis = player.moveAxis;
             role.Move(camera.transform, moveAxis);
 

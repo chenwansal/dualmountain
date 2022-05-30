@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using DualMountain.Facades;
 using DualMountain.WorldBusiness;
 using DualMountain.WorldBusiness.Controller;
 using DualMountain.WorldBusiness.Facades;
@@ -31,10 +32,7 @@ namespace DualMountain {
                 try {
 
                     // ==== CTOR ====
-                    // 找到相机 && 虚拟相机
-                    AllWorldRepo.SetCamera(Camera.main);
-
-                    // 生成 PlayerEntity
+                    AllGlobalRepo.Ctor();
                     AllWorldRepo.Ctor();
 
                     worldSpawnController = new WorldSpawnController();
@@ -42,6 +40,9 @@ namespace DualMountain {
                     roleController = new RoleController();
 
                     AllWorldAssets.Ctor();
+
+                    // ==== INJECT ====
+                    AllGlobalRepo.Inject(Camera.main);
 
                     // ==== INIT ====
                     await AllWorldAssets.WorldAssets.LoadAll();

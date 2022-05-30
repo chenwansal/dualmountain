@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace DualMountain.WorldBusiness {
+namespace DualMountain {
 
     // 输入类
     public class InputEntity {

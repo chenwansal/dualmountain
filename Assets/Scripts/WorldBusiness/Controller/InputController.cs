@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using DualMountain.Facades;
 using DualMountain.WorldBusiness.Facades;
 
 namespace DualMountain.WorldBusiness.Controller {
@@ -12,7 +13,7 @@ namespace DualMountain.WorldBusiness.Controller {
         public void Init() {
 
             // 绑定输入
-            var input = AllWorldRepo.InputEntity;
+            var input = AllGlobalRepo.InputEntity;
             input.OnMoveHandle += OnMove;
             input.OnJumpHandle += OnJump;
 
@@ -20,7 +21,7 @@ namespace DualMountain.WorldBusiness.Controller {
 
         public void Tick(float deltaTime) {
 
-            var player = AllWorldRepo.PlayerEntity;
+            var player = AllGlobalRepo.PlayerEntity;
             if (player == null) {
                 return;
             }
@@ -38,12 +39,12 @@ namespace DualMountain.WorldBusiness.Controller {
 
         void OnMove(Vector2 moveAxis) {
             // 获取玩家
-            var player = AllWorldRepo.PlayerEntity;
+            var player = AllGlobalRepo.PlayerEntity;
             player.moveAxis = moveAxis;
         }
 
         void OnJump(float jumpAxis) {
-            var player = AllWorldRepo.PlayerEntity;
+            var player = AllGlobalRepo.PlayerEntity;
             player.jumpAxis = jumpAxis;
         }
 
